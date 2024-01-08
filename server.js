@@ -14,3 +14,13 @@ const server = http.createServer(app);
 server.listen(PORT, () => {
   console.log("Server is running on port: " + PORT);
 });
+
+mongoose.connect(process.env.MONGO_URI).then(() => {
+  server
+    .listen(PORT, () => {
+      console.log(`Server is running on port: ${PORT}`);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
